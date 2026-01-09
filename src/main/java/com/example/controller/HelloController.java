@@ -7,6 +7,6 @@ import org.springframework.web.bind.annotation.RestController;
 public class HelloController {
 	 @GetMapping("/")
 	public String hello() {
-        return "Hello Spring Boot Project  deployed on ec2";
+        return "Hello  i m swastika ";
     }
 }
