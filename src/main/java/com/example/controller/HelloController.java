@@ -5,8 +5,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 public class HelloController {
-	 @GetMapping("/")
+	 @GetMapping("/check")
 	public String hello() {
-        return "Hello  i m swastika ";
+        return "Hello SonarCloud PR check ";
     }
 }
