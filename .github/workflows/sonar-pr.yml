@@ -1,0 +1,31 @@
+name: SonarQube PR Check
+
+on:
+  pull_request:
+    branches:
+      - main   # PR target branch
+
+jobs:
+  sonar:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0  # needed for PR branch info
+
+      - name: Set up JDK 17
+        uses: actions/setup-java@v4
+        with:
+          java-version: '17'
+          distribution: 'temurin'
+
+      - name: Run SonarQube Scan
+        run: mvn clean verify sonar:sonar \
+          -Dsonar.projectKey=SpringBootApplication-4 \
+          -Dsonar.host.url=${{ secrets.SONAR_HOST_URL }} \
+          -Dsonar.login=${{ secrets.sonar_token}} \
+          -Dsonar.pullrequest.key=${{ github.event.pull_request.number }} \
+          -Dsonar.pullrequest.branch=${{ github.head_ref }} \
+          -Dsonar.pullrequest.base=main
