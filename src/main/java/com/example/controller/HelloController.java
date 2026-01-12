@@ -9,4 +9,9 @@ public class HelloController {
 	public String hello() {
         return "Hello  i m swastika ";
     }
+	 
+	 @GetMapping("/health")
+	 public String health() {
+	     return "Hello Sonar PR Test";
+	 }
 }
